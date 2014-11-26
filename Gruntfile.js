@@ -86,6 +86,21 @@ module.exports = function(grunt) {
             angular1_3: {
                 configFile: 'config/karma.conf.angular.1.3.js'
             }
+        },
+        bump: {
+          options: {
+            files: ['package.json', 'bower.json'],
+            updateConfigs: [],
+            commit: true,
+            commitMessage: 'Release v%VERSION%',
+            commitFiles: ['package.json', 'bower.json'],
+            createTag: true,
+            tagName: 'v%VERSION%',
+            tagMessage: 'Version %VERSION%',
+            push: true,
+            pushTo: 'origin',
+            gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
+          }
         }
     });
 
