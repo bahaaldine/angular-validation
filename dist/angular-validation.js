@@ -280,8 +280,8 @@
 
 (function() {
     angular.module('validation.directive', ['validation.provider'])
-        .directive('validator', ['$injector',
-            function($injector) {
+        .directive('validator', ['$injector', 'i18nService',
+            function($injector, i18nService) {
 
                 var $validationProvider = $injector.get('$validation'),
                     $q = $injector.get('$q'),
@@ -326,7 +326,9 @@
                     var messageElem = element.next();
                     messageElem.css('display', '');
                     if ($validationProvider.showErrorMessage) {
-                        messageElem.html($validationProvider.getErrorHTML(validMessage || $validationProvider.getDefaultMsg(validation).error));
+                        i18nService.getString(validMessage).then(function(data) {
+                            element.next().html($validationProvider.getErrorHTML(data || $validationProvider.getDefaultMsg(validation).error));
+                        });
                     } else {
                         messageElem.html('');
                     }

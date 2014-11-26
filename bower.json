@@ -15,5 +15,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+      "angular-fast-i18n": "0.x.x"
+  },
 }
